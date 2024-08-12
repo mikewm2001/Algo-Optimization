@@ -1,4 +1,4 @@
-#include "benchmark.cpp"
+#include "benchmark.h"
 #include <cstdlib>
 
 int main() {

@@ -1,7 +1,7 @@
 #include "benchmark.h"
+#include "sort.h"
 #include <iostream>
 #include <chrono>
-#include "sort.cpp"
 using namespace std;
 
 // Benchmark function that tests both quicksort and quicksort_parallel
