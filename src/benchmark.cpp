@@ -6,7 +6,7 @@ using namespace std;
 
 // Benchmark function that tests both quicksort and quicksort_parallel
 void benchmark(int arr[], int size) {
-    // Copy the array
+    // Copy the array with the same values
     int* arr_copy = new int[size];
     copy(arr, arr + size, arr_copy);
 
@@ -19,7 +19,7 @@ void benchmark(int arr[], int size) {
 
     // Benchmark parallel quicksort
     start = chrono::high_resolution_clock::now();
-    quicksort_parallel(arr_copy, 0, size - 1);
+    quicksort_parallel(arr_copy, 0, size - 1, 0);
     end = chrono::high_resolution_clock::now();
     elapsed = end - start;
     cout << "Parallel Quicksort: " << elapsed.count() << " seconds\n";
