@@ -39,9 +39,7 @@ void quicksort(int arr[], int low, int high) {
 void quicksort_parallel(int arr[], int low, int high, int depth) {
     if (low < high) {
         int pi = partition(arr, low, high);
-
-        // cout << "Partition index: " << pi << " at depth: " << depth << endl;
-
+        
         // Limit the number of threads created
         if (depth < 10) {
             // Use multithreading for faster execution
