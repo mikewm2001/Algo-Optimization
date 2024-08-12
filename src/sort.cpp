@@ -1,5 +1,7 @@
 #include "sort.h"
 #include <thread>
+#include <iostream>
+#include <functional>
 using namespace std;
 
 // Function to swap two elements
@@ -34,15 +36,23 @@ void quicksort(int arr[], int low, int high) {
 }
 
 // Parallel quicksort algorithm
-void quicksort_parallel(int arr[], int low, int high) {
+void quicksort_parallel(int arr[], int low, int high, int depth) {
     if (low < high) {
         int pi = partition(arr, low, high);
 
-        // Use multithreading for faster execution
-        thread left_thread(quicksort_parallel, arr, low, pi - 1);
-        thread right_thread(quicksort_parallel, arr, pi + 1, high);
+        // cout << "Partition index: " << pi << " at depth: " << depth << endl;
 
-        left_thread.join();
-        right_thread.join();
+        // Limit the number of threads created
+        if (depth < 10) {
+            // Use multithreading for faster execution
+            std::thread left_thread(quicksort_parallel, std::ref(arr), low, pi - 1, depth + 1);
+            std::thread right_thread(quicksort_parallel, std::ref(arr), pi + 1, high, depth + 1);
+
+            left_thread.join();
+            right_thread.join();
+        } else {
+            quicksort(arr, low, pi - 1);
+            quicksort(arr, pi + 1, high);
+        }
     }
 }
