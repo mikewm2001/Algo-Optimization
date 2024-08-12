@@ -2,14 +2,10 @@
 #include <cstdlib>
 
 int main() {
-    const int n = 10000000;
-    int* arr = new int[n];
+    const int size = 10000000;
+    int* arr = new int[size];
 
-    for (int i = 0; i < n; i++) {
-        arr[i] = rand();
-    }
-
-    benchmark(arr, n);
+    benchmark(arr, size);
 
     delete[] arr;
     return 0;
